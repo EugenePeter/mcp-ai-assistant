@@ -1,5 +1,6 @@
 import { createMcpHandler } from "@vercel/mcp-adapter";
 import { z } from "zod";
+import OpenAI from "openai";
 
 const handler = createMcpHandler(
   async (server) => {
@@ -13,12 +14,37 @@ const handler = createMcpHandler(
         content: [{ type: "text", text: `Tool echo: ${message}` }],
       })
     );
+    server.tool(
+      "ask-openai",
+      "Ask a question to GPT",
+      {
+        prompt: z.string(),
+      },
+      async ({ prompt }) => {
+        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+        const res = await openai.chat.completions.create({
+          model: "gpt-4",
+          messages: [{ role: "user", content: prompt }],
+        });
+        return {
+          content: [
+            {
+              type: "text",
+              text: res.choices[0]?.message?.content || "No response",
+            },
+          ],
+        };
+      }
+    );
   },
   {
     capabilities: {
       tools: {
         echo: {
           description: "Echo a message",
+        },
+        "ask-openai": {
+          description: "Ask a question to OpenAI",
         },
       },
     },
