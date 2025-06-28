@@ -2,6 +2,15 @@ import { createMcpHandler } from "@vercel/mcp-adapter";
 import { z } from "zod";
 import OpenAI from "openai";
 
+import { NextRequest } from "next/server";
+
+// === CORS HEADERS ===
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*", // Use specific origin for production
+  "Access-Control-Allow-Methods": "GET,POST,DELETE,OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type,Authorization",
+};
+
 const handler = createMcpHandler(
   async (server) => {
     server.tool(
@@ -59,4 +68,40 @@ const handler = createMcpHandler(
   }
 );
 
-export { handler as GET, handler as POST, handler as DELETE };
+// export { handler as GET, handler as POST, handler as DELETE };
+
+// === EXPORT HANDLERS WITH CORS ===
+
+// Handle CORS preflight
+export function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: corsHeaders,
+  });
+}
+
+// Wrap all methods (GET, POST, DELETE) — they all just invoke the same MCP handler
+export async function GET(req: NextRequest) {
+  const res = await handler(req);
+  cors(res);
+  return res;
+}
+
+export async function POST(req: NextRequest) {
+  const res = await handler(req);
+  cors(res);
+  return res;
+}
+
+export async function DELETE(req: NextRequest) {
+  const res = await handler(req);
+  cors(res);
+  return res;
+}
+
+// Utility to apply CORS headers to a response
+function cors(res: Response) {
+  Object.entries(corsHeaders).forEach(([key, value]) => {
+    res.headers.set(key, value);
+  });
+}

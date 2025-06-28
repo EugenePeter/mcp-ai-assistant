@@ -132,7 +132,7 @@
   resolved "https://registry.yarnpkg.com/@img/sharp-win32-x64/-/sharp-win32-x64-0.34.2.tgz#ecf19250f8fe35de684aa2b0ec6f773b3447247b"
   integrity sha512-aUdT6zEYtDKCaxkofmmJDJYGCf0+pJg3eU9/oBuqvEeoB9dKI6ZLc/1iLJCTuJQDO4ptntAlkUmHgGjyuobZbw==
 
-"@modelcontextprotocol/sdk@^1.13.2":
+"@modelcontextprotocol/sdk@^1.13.1", "@modelcontextprotocol/sdk@^1.13.2":
   version "1.13.2"
   resolved "https://registry.yarnpkg.com/@modelcontextprotocol/sdk/-/sdk-1.13.2.tgz#cb33fb668a03573cc4d3df9d194dc5c73239861f"
   integrity sha512-Vx7qOcmoKkR3qhaQ9qf3GxiVKCEu+zfJddHv6x3dY/9P6+uIwJnmuAur5aB+4FDXf41rRrDnOEGkviX5oYZ67w==
@@ -1068,6 +1068,11 @@ streamsearch@^1.1.0:
   resolved "https://registry.yarnpkg.com/streamsearch/-/streamsearch-1.1.0.tgz#404dd1e2247ca94af554e841a8ef0eaa238da764"
   integrity sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==
 
+strict-url-sanitise@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/strict-url-sanitise/-/strict-url-sanitise-0.0.1.tgz#10cfac63c9dfdd856d98ab9f76433dad5ce99e0c"
+  integrity sha512-nuFtF539K8jZg3FjaWH/L8eocCR6gegz5RDOsaWxfdbF5Jqr2VXWxZayjTwUzsWJDC91k2EbnJXp6FuWW+Z4hg==
+
 styled-jsx@5.1.6:
   version "5.1.6"
   resolved "https://registry.yarnpkg.com/styled-jsx/-/styled-jsx-5.1.6.tgz#83b90c077e6c6a80f7f5e8781d0f311b2fe41499"
@@ -1115,6 +1120,14 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
+
+use-mcp@^0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/use-mcp/-/use-mcp-0.0.14.tgz#0e163623df0f1bdf28027b7e7f582b45868e5fcb"
+  integrity sha512-U+AC2X9BvYBQzi91latkeGTyqlKhUmvAHYtLVnQXI4k5XxagrYQlG+GXeSvktEsW1GsAZoJ+ojU7ct0X1ORZNw==
+  dependencies:
+    "@modelcontextprotocol/sdk" "^1.13.1"
+    strict-url-sanitise "^0.0.1"
 
 vary@^1, vary@^1.1.2:
   version "1.1.2"
