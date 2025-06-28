@@ -20,7 +20,7 @@ export default async function ChatPage() {
 }
 
 async function ChatForm() {
-  const result = askOpenAI();
+  const result = await askOpenAI();
   console.log("RESULT", result);
   return (
     <div>
@@ -42,7 +42,9 @@ async function ChatForm() {
         </button>
       </form>
 
-      <div>{result && JSON.stringify(result)}</div>
+      <div className="mt-4 p-2 bg-gray-100 border rounded">
+        <pre>{JSON.stringify(result, null, 2)}</pre>
+      </div>
     </div>
   );
 }
