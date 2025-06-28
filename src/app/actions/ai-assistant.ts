@@ -5,7 +5,7 @@ import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/
 
 import { SSEClientTransport } from "@modelcontextprotocol/sdk/client/sse.js";
 const origin = "https://mcp-ai-assistant.vercel.app";
-export async function askOpenAI(prompt: string) {
+export async function askOpenAI(prompt?: string) {
   //   const transport = new StreamableHTTPClientTransport(
   //     new URL(`${process.env.MCP_SERVER_ORIGIN ?? "http://localhost:6020"}/mcp`)
   //   );
@@ -28,14 +28,14 @@ export async function askOpenAI(prompt: string) {
 
   await client.connect(transport);
 
-  console.log("PROMPT", prompt);
   //@ts-ignore
   //   const result = await client.callTool("echo", {});
   const result = await client.listTools();
 
+  console.log("PROMPT", prompt);
   await client.close();
 
-  //@ts-ignore
-  return tools.map((tool) => tool.name).join(", ");
+  return result;
+  //   return result.map((tool) => tool.name).join(", ");
   //   return result?.content?.[0]?.text ?? "No response from agent";
 }

@@ -20,20 +20,29 @@ export default async function ChatPage() {
 }
 
 async function ChatForm() {
+  const result = askOpenAI();
+  console.log("RESULT", result);
   return (
-    <form action={handleSubmit} className="space-y-4">
-      <textarea
-        name="prompt"
-        placeholder="Type your message..."
-        rows={4}
-        className="w-full border border-gray-300 p-2 rounded"
-      />
-      <button
-        type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+    <div>
+      <form
+        // action={handleSubmit}
+        className="space-y-4"
       >
-        Send
-      </button>
-    </form>
+        <textarea
+          name="prompt"
+          placeholder="Type your message..."
+          rows={4}
+          className="w-full border border-gray-300 p-2 rounded"
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Send
+        </button>
+      </form>
+
+      <div>{result && JSON.stringify(result)}</div>
+    </div>
   );
 }
