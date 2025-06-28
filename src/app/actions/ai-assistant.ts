@@ -36,5 +36,6 @@ export async function askOpenAI(prompt: string) {
   await client.close();
 
   //@ts-ignore
-  return result?.content?.[0]?.text ?? "No response from agent";
+  return tools.map((tool) => tool.name).join(", ");
+  //   return result?.content?.[0]?.text ?? "No response from agent";
 }
