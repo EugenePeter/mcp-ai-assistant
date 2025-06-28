@@ -3,6 +3,8 @@
 import { askOpenAI } from "@/app/actions/ai-assistant";
 import { Suspense } from "react";
 
+import { handleSubmit } from "../actions/handleSubmit";
+
 export default async function ChatPage() {
   return (
     <div className="max-w-xl mx-auto p-6">
@@ -17,18 +19,7 @@ export default async function ChatPage() {
   );
 }
 
-export async function handleSubmit(formData: FormData) {
-  const prompt = formData.get("prompt");
-
-  if (typeof prompt !== "string") {
-    throw new Error("Prompt must be a string");
-  }
-
-  return await askOpenAI(prompt);
-}
-
 async function ChatForm() {
-  // Optional: You can also store previous prompts via cookies/searchParams
   return (
     <form action={handleSubmit} className="space-y-4">
       <textarea
