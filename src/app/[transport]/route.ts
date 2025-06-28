@@ -4,15 +4,18 @@ import OpenAI from "openai";
 
 const handler = createMcpHandler(
   async (server) => {
+    //@ts-ignore
     server.tool(
       "echo",
-      "description",
-      {
-        message: z.string(),
-      },
-      async ({ message }) => ({
-        content: [{ type: "text", text: `Tool echo: ${message}` }],
-      })
+      "Returns a confirmation message with no input",
+      z.object({}),
+      async () => {
+        return {
+          content: [
+            { type: "text", text: "Echo tool triggered successfully!" },
+          ],
+        };
+      }
     );
     server.tool(
       "ask-openai",
