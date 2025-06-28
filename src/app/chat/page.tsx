@@ -1,4 +1,4 @@
-"use server";
+export const dynamic = "force-dynamic";
 
 import { askOpenAI } from "@/app/actions/ai-assistant";
 import { Suspense } from "react";
